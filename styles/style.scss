@@ -12,6 +12,7 @@
   align-items: center;
   .shopping-list {
     display: flex;
+    justify-content: space-between;
     flex-direction: column;
     width: 330px;
     height: 330px;
