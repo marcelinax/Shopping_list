@@ -105,6 +105,10 @@
   border-color: white;
 }
 
+.container .shopping-list-items .shopping-list-item:hover .check {
+  background-color: white;
+}
+
 .container .shopping-list-items .shopping-list-item .title {
   color: #cca3a3;
 }
@@ -118,6 +122,10 @@
   border-radius: 4px;
   margin-right: 1rem;
   cursor: pointer;
+}
+
+.container .shopping-list-items .shopping-list-item .check {
+  background-color: #cca3a3;
 }
 
 .container .shopping-list .bottom-menu {

@@ -15,7 +15,13 @@ class ListItem {
       <div class="checkbox"></div>
       <p class="title">${this.title}</p>
       `;
+
     shoppingListItem.innerHTML = content;
+    // shoppingListItem.addEventListener("click", () => {
+    //   console.log(list.selectListItem(this));
+
+    //   list.selectListItem(this);
+    // });
     shoppingList.appendChild(shoppingListItem);
   }
 }
@@ -26,6 +32,7 @@ class List {
     this.initAddListItem();
     this.readListItemsFromLocalStorage();
     this.showInput();
+    this.initSelectListItem();
   }
 
   saveListItemsInLocalStorage() {
@@ -59,6 +66,20 @@ class List {
   showInput() {
     document.getElementById("create-item-btn").addEventListener("click", () => {
       document.querySelector(".input-box").classList.toggle("active");
+    });
+  }
+  selectListItem(index) {
+    const selectedItem = this.listItems.filter((_, i) => i === index);
+    selectedItem[0].bought = !selectedItem[0].bought;
+
+    this.saveListItemsInLocalStorage();
+  }
+  initSelectListItem() {
+    document.querySelectorAll(".checkbox").forEach((checkbox, index) => {
+      checkbox.addEventListener("click", () => {
+        checkbox.classList.toggle("check");
+        this.selectListItem(index);
+      });
     });
   }
 }

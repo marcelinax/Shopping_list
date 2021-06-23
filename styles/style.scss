@@ -65,6 +65,9 @@
           .checkbox {
             border-color: white;
           }
+          .check {
+            background-color: white;
+          }
         }
         .title {
           color: #cca3a3;
@@ -78,6 +81,9 @@
           border-radius: 4px;
           margin-right: 1rem;
           cursor: pointer;
+        }
+        .check {
+          background-color: #cca3a3;
         }
       }
     }
