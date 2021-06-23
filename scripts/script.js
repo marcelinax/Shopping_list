@@ -12,7 +12,7 @@ class ListItem {
     const shoppingListItem = document.createElement("div");
     shoppingListItem.classList.add("shopping-list-item");
     let content = `
-      <div class="checbox"></div>
+      <div class="checkbox"></div>
       <p class="title">${this.title}</p>
       `;
     shoppingListItem.innerHTML = content;
@@ -25,6 +25,7 @@ class List {
   constructor() {
     this.initAddListItem();
     this.readListItemsFromLocalStorage();
+    this.showInput();
   }
 
   saveListItemsInLocalStorage() {
@@ -44,13 +45,20 @@ class List {
 
   addListItem() {
     const title = document.getElementById("product-name").value;
+
     const listItem = new ListItem(title);
     this.listItems.push(listItem);
     this.saveListItemsInLocalStorage();
   }
   initAddListItem() {
-    document.getElementById("add-list-btn").addEventListener("click", () => {
+    document.getElementById("add-item-btn").addEventListener("click", () => {
       this.addListItem();
+      document.querySelector(".input-box").classList.toggle("active");
+    });
+  }
+  showInput() {
+    document.getElementById("create-item-btn").addEventListener("click", () => {
+      document.querySelector(".input-box").classList.toggle("active");
     });
   }
 }
