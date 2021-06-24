@@ -12,16 +12,15 @@ class ListItem {
     const shoppingListItem = document.createElement("div");
     shoppingListItem.classList.add("shopping-list-item");
     let content = `
-      <div class="checkbox"></div>
+      <div class="checkbox ${this.bought ? "check" : ""}"></div>
       <p class="title">${this.title}</p>
+      <button class='icon-btn delete-btn' id='delete-item'>
+       <img src="./assets/bx-trash-alt.svg" alt="" />
+      </button>
       `;
 
     shoppingListItem.innerHTML = content;
-    // shoppingListItem.addEventListener("click", () => {
-    //   console.log(list.selectListItem(this));
 
-    //   list.selectListItem(this);
-    // });
     shoppingList.appendChild(shoppingListItem);
   }
 }
@@ -33,6 +32,8 @@ class List {
     this.readListItemsFromLocalStorage();
     this.showInput();
     this.initSelectListItem();
+    this.initDeleteListItem();
+    this.showDeleteBtns();
   }
 
   saveListItemsInLocalStorage() {
@@ -44,7 +45,10 @@ class List {
     if (localListItems) {
       const listItemsShapes = JSON.parse(localStorage.getItem("listItems"));
       listItemsShapes.forEach((listItemShape) => {
-        const listItem = new ListItem(listItemShape.title);
+        const listItem = new ListItem(
+          listItemShape.title,
+          listItemShape.bought
+        );
         this.listItems.push(listItem);
       });
     }
@@ -69,7 +73,7 @@ class List {
     });
   }
   selectListItem(index) {
-    const selectedItem = this.listItems.filter((_, i) => i === index);
+    const selectedItem = this.listItems.filter((_, i) => i == index);
     selectedItem[0].bought = !selectedItem[0].bought;
 
     this.saveListItemsInLocalStorage();
@@ -81,6 +85,26 @@ class List {
         this.selectListItem(index);
       });
     });
+  }
+  deleteListItem(index) {
+    this.listItems = [...this.listItems.filter((_, i) => i != index)];
+    this.saveListItemsInLocalStorage();
+  }
+  initDeleteListItem() {
+    document.querySelectorAll("#delete-item").forEach((btn, index) => {
+      btn.addEventListener("click", () => {
+        this.deleteListItem(index);
+      });
+    });
+  }
+  showDeleteBtns() {
+    document
+      .getElementById("delete-items-btn")
+      .addEventListener("click", () => {
+        document.querySelectorAll("#delete-item").forEach((btn) => {
+          btn.classList.toggle("delete-btn--active");
+        });
+      });
   }
 }
 

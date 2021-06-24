@@ -56,6 +56,7 @@
         border-radius: 5px;
         display: flex;
         align-items: center;
+        position: relative;
         &:hover {
           background-color: #ccada3;
 
@@ -68,6 +69,18 @@
           .check {
             background-color: white;
           }
+        }
+        .delete-btn {
+          display: none;
+          &:hover {
+            transform: translateY(0);
+          }
+        }
+        .delete-btn--active {
+          display: flex;
+          position: absolute;
+          right: 0;
+          top: 0.7rem;
         }
         .title {
           color: #cca3a3;

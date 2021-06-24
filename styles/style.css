@@ -91,6 +91,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
 }
 
 .container .shopping-list-items .shopping-list-item:hover {
@@ -107,6 +108,24 @@
 
 .container .shopping-list-items .shopping-list-item:hover .check {
   background-color: white;
+}
+
+.container .shopping-list-items .shopping-list-item .delete-btn {
+  display: none;
+}
+
+.container .shopping-list-items .shopping-list-item .delete-btn:hover {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+
+.container .shopping-list-items .shopping-list-item .delete-btn--active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  right: 0;
+  top: 0.7rem;
 }
 
 .container .shopping-list-items .shopping-list-item .title {
